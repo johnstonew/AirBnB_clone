@@ -5,9 +5,9 @@ Shell interects with a file to store and retrieve datda
 
 # Command interpreter:
 ## How to start
-1. Open your terminal and type
+1. Open your terminal and type (ignore the $ sign)
 ```
-./console.py
+$ ./console.py
 ```
 
 2. Your will be presented with a command prompt that looks like this
@@ -17,6 +17,8 @@ Shell interects with a file to store and retrieve datda
 
 ## How to use it
 The following command are available to be used with the Shell
-help
+```
+EOF  help  quit
+```
 
 ## Examples
