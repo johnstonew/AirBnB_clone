@@ -8,13 +8,13 @@ import sys
 from models.base_model import BaseModel
 
 
-class FileStorage(BaseModel):
+class FileStorage:
     """
     FileStorage class
     """
 
     __file_path = "file.json"
-    __objects
+    __objects = {}
 
     def all(self):
         """
@@ -26,13 +26,14 @@ class FileStorage(BaseModel):
         """
         sets in __objects the obj with key <obj class name>.id
         """
-        self.__objects = super().id
+        key = obj.__class__.__name__ + "." + obj.id
+        self.__objects[key] = obj
 
     def save(self):
         """
         serializes __objects to the JSON file
         """
-        my_string = JSON.dumps(self.__objects)
+        my_string = json.dumps(self.__objects)
         with open(self.__file_path, "w") as file:
             file.write(my_string)
 
@@ -43,6 +44,9 @@ class FileStorage(BaseModel):
         try:
             file = open(self.__file_path, "r")
             my_string = file.read()
-            self.__objects = JSON.loads(my_string)
-        finally:
+            ob = json.loads(my_string)
+            for key in ob:
+                self.__objects[key] = classes[ob[key]["__class__"]](**ob[key])
             file.close()
+        except:
+            pass
